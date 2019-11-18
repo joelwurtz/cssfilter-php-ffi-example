@@ -11,7 +11,7 @@ pub extern "C" fn cssfilter(html_cstr: *const libc::c_char, filter_cstr: *const 
     let document = scraper::Html::parse_document(html);
     let selector = scraper::Selector::parse(filter).unwrap();
 
-    str_to_cstr(document.select(&selector).next().unwrap().html())
+    str_to_cstr(document.select(&selector).next().unwrap().inner_html())
 }
 
 fn cstr_to_str(cstr: *const libc::c_char) -> &'static str {
